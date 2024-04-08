@@ -11,19 +11,19 @@ export default class BaseEntity {
         this._updatedAt = new Date();
     }
 
-    get id(): Id | undefined {
+    public get id(): Id | undefined {
         return this._id;
     }
 
-    get createdAt(): Date {
+    public get createdAt(): Date {
         return this._createdAt;
     }
 
-    get updatedAt(): Date {
+    public get updatedAt(): Date {
         return this._updatedAt;
     }
 
-    set updateAt(updatedAt: Date) {
+    public set updateAt(updatedAt: Date) {
         this._updatedAt = updatedAt;
     }
 }

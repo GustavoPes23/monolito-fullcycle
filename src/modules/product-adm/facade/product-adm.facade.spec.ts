@@ -4,6 +4,7 @@ import ProductRepository from "../repository/product.repository";
 import AddProductUseCase from "../usecase/add-product/add-product.usecase";
 import ProductAdmFacade from "./product-adm.facade";
 import ProductAdmFacadeFactory from "../factory/facade.factory";
+import CheckStockUseCase from "../usecase/check-stock/check-stock.usecase";
 
 describe("Product adm facade test", () => {
     let sequelize: Sequelize;
@@ -70,5 +71,26 @@ describe("Product adm facade test", () => {
         expect(product?.dataValues.description).toBe(input.description);
         expect(product?.dataValues.purchasePrice).toBe(input.purchasePrice);
         expect(product?.dataValues.stock).toBe(input.stock);
-    })
+    });
+
+    it("should check stock of a product", async () => {
+        const productFacade = ProductAdmFacadeFactory.create();
+
+        const input = {
+            id: "1",
+            name: "Product 1",
+            description: "Product 1 description",
+            purchasePrice: 100,
+            stock: 10
+        };
+
+        await productFacade.addProduct(input);
+
+        const result = await productFacade.checkStock({
+            productId: "1"
+        });
+
+        expect(result.stock).toBe(10);
+        expect(result.productId).toBe("1");
+    });
 });
