@@ -7,11 +7,11 @@ import GenerateInvoiceUseCase from "../usecase/generate-invoice/generate-invoice
 export default class InvoiceFacadeFactory {
   public static create(): InvoiceFacadeInterface {
     const repository = new InvoiceRepository();
-    const generateUseCase = new GenerateInvoiceUseCase(repository);
+    const createUseCase = new GenerateInvoiceUseCase(repository);
     const findUseCase = new FindInvoiceUseCase(repository);
 
     return new InvoiceFacade({
-      generateUseCase,
+      createUseCase,
       findUseCase,
     });
   }

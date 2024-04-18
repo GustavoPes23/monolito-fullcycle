@@ -53,7 +53,7 @@ describe("Invoice facade test", () => {
       ],
     };
 
-    await facade.generate(input);
+    await facade.create(input);
 
     const invoice = await InvoiceModel.findOne({ where: { id: "1" } });
     const invoiceItems = JSON.parse(invoice!.dataValues.items);

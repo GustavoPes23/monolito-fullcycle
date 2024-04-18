@@ -36,7 +36,13 @@ describe("Client adm facade test", () => {
       id: "1",
       name: "Client 1",
       email: "client1@email",
-      address: "Client 1 address",
+      document: "Client 1 document",
+      street: "street 1",
+      number: "1",
+      complement: "complement 1",
+      city: "city 1",
+      state: "state 1",
+      zipCode: "zipCode 1",
     };
 
     await facade.add(input);
@@ -47,7 +53,7 @@ describe("Client adm facade test", () => {
     expect(client!.dataValues.id).toBe(input.id);
     expect(client!.dataValues.name).toBe(input.name);
     expect(client!.dataValues.email).toBe(input.email);
-    expect(client!.dataValues.address).toBe(input.address);
+    expect(client!.dataValues.document).toBe(input.document);
   });
 
   it("should find a client", async () => {
@@ -62,7 +68,13 @@ describe("Client adm facade test", () => {
       id: "1",
       name: "Client 1",
       email: "client1@email",
-      address: "Client 1 address",
+      document: "Client 1 document",
+      street: "street 1",
+      number: "1",
+      complement: "complement 1",
+      city: "city 1",
+      state: "state 1",
+      zipCode: "zipCode 1",
       createdAt: new Date(),
       updatedAt: new Date(),
     });
@@ -74,7 +86,7 @@ describe("Client adm facade test", () => {
     expect(result.id).toBe(client.dataValues.id);
     expect(result.name).toBe(client.dataValues.name);
     expect(result.email).toBe(client.dataValues.email);
-    expect(result.address).toBe(client.dataValues.address);
+    expect(result.document).toBe(client.dataValues.document);
     expect(result.createdAt).toStrictEqual(client.dataValues.createdAt);
     expect(result.updatedAt).toStrictEqual(client.dataValues.updatedAt);
   });

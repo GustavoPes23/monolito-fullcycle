@@ -59,8 +59,8 @@ export interface FindInvoiceFacadeOutputDTO {
 }
 
 export default interface InvoiceFacadeInterface {
-  generate(
+  create(
     input: GenerateInvoiceFacadeInputDto
-  ): Promise<void>;
+  ): Promise<GenerateInvoiceFacadeOutputDto>;
   find(input: FindInvoiceFacadeInputDTO): Promise<FindInvoiceFacadeOutputDTO>;
 }
