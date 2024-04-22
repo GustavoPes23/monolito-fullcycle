@@ -1,7 +1,8 @@
 import { Column, Model, PrimaryKey, Table } from "sequelize-typescript";
 
 @Table({
-    tableName: "products",
+    modelName: "products-store-catalog-table",
+    tableName: "products-adm",
     timestamps: false
 })
 export default class ProductModel extends Model {
