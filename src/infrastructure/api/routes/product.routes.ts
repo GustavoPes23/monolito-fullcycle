@@ -1,26 +1,26 @@
 import express, { Request, Response } from "express";
-
 import ProductAdmFacadeFactory from "../../../modules/product-adm/factory/facade.factory";
 
-export const productsRoute = express.Router();
+export const productRoute = express.Router();
 
-productsRoute.post("/", async (req: Request, res: Response) => {
-  const facade = ProductAdmFacadeFactory.create();
+productRoute.post("/", async (req: Request, res: Response) => {
+  const productFacadeAdm = ProductAdmFacadeFactory.create();
 
   try {
-    const { id, name, description, stock, purchasePrice } = req.body;
-
-    await facade.addProduct({
-        id,
-        name,
-        description,
-        stock,
-        purchasePrice,
-    });
-
-    res.status(201).send();
-  } catch (error) {
-    console.log("error", error)
-    res.status(400).send(error);
+    const productDto = {
+      name: req.body.name,
+      description: req.body.description,
+      stock: req.body.stock,
+      purchasePrice: req.body.purchasePrice,
+    };
+    const output = await productFacadeAdm.addProduct(productDto);
+    
+    res.send(output);
+  } catch (err) {
+    if (err instanceof Error) {
+      res.status(400).send(err.message);
+    } else {
+      res.status(500).send(err);
+    }
   }
 });

@@ -25,10 +25,10 @@ export default class ProductRepository implements ProductGateway {
     }
 
     return new Product({
-      id: new Id(product.dataValues.id),
-      name: product.dataValues.name,
-      description: product.dataValues.description,
-      salesPrice: product.dataValues.salesPrice,
+      id: new Id(product!.dataValues.id),
+      name: product!.dataValues.name,
+      description: product!.dataValues.description,
+      salesPrice: product!.dataValues.salesPrice,
     });
   }
 }

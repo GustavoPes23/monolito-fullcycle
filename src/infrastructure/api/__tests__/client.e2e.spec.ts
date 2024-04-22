@@ -11,19 +11,30 @@ describe("E2E test for client", () => {
   });
 
   it("should create a client", async () => {
-    const response = await request(app).post("/clients").send({
+    const response = await request(app).post("/client").send({
       id: "1",
-      name: "john doe",
-      email: "john.doe@email.com",
-      document: "215251",
-      street: "Main Street",
-      number: "123",
-      complement: "Next to the bank",
-      city: "New York",
-      state: "New York",
-      zipCode: "122343404",
+      name: "Client",
+      document: "doc",
+      email: "client@gmail.com",
+      street: "Street",
+      number: "1",
+      complement: "apto",
+      city: "City",
+      state: "State",
+      zipCode: "29000000",
     });
 
-    expect(response.status).toEqual(201);
+    console.log(response);
+    expect(response.status).toBe(200);
+    expect(response.body.id).toBe("1");
+    expect(response.body.name).toBe("Client");
+    expect(response.body.document).toBe("doc");
+    expect(response.body.email).toBe("client@gmail.com");
+    expect(response.body.street).toBe("Street");
+    expect(response.body.number).toBe("1");
+    expect(response.body.complement).toBe("apto");
+    expect(response.body.city).toBe("City");
+    expect(response.body.state).toBe("State");
+    expect(response.body.zipCode).toBe("29000000");
   });
 });

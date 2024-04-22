@@ -4,37 +4,31 @@ import ClientAdmFacadeFactory from "../../../modules/client-adm/factory/client-a
 export const clientRoute = express.Router();
 
 clientRoute.post("/", async (req: Request, res: Response) => {
-  const facade = ClientAdmFacadeFactory.create();
+  const clientFacade = ClientAdmFacadeFactory.create();
 
   try {
-    const {
-      id,
-      name,
-      email,
-      document,
-      street,
-      complement,
-      number,
-      city,
-      state,
-      zipCode,
-    } = req.body;
+    const clientDto = {
+      id: req.body.id,
+      name: req.body.name,
+      document: req.body.document,
+      email: req.body.email,
+      street: req.body.street,
+      number: req.body.number,
+      complement: req.body.complement,
+      city: req.body.city,
+      state: req.body.state,
+      zipCode: req.body.zipCode,
+    };
+    await clientFacade.add(clientDto);
 
-    await facade.add({
-        id,
-        name,
-        email,
-        document,
-        street,
-        complement,
-        number,
-        city,
-        state,
-        zipCode,
-      });
-
-    res.status(201).send();
-  } catch (error) {
-    res.status(400).send(error);
+    const output = await clientFacade.find({ id: clientDto.id });
+    
+    res.send(output);
+  } catch (err) {
+    if (err instanceof Error) {
+      res.status(400).send(err.message);
+    } else {
+      res.status(500).send(err);
+    }
   }
 });
